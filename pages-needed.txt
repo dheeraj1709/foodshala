@@ -1,0 +1,327 @@
+-- Total Users types
+
+-- Customer{
+-- 	List of restaurants
+-- 	List of recepies + restaurants
+-- 	Cart
+-- 	Code
+
+
+-- 	// Optionals //
+-- 	 Live chat 
+-- 	 Coupons
+-- 	 Message
+-- 	 Ratings for restaurant
+-- }{
+-- 	DATABASE REQUIREMENTS
+-- 	1- Name
+-- 	2- Mobile
+-- 	3- Password
+-- 	4- Address
+-- 	5- Customer unique id
+-- 	6- Email
+-- 	7- Profile image
+-- }
+
+-- Restaurant{
+-- 	View orders
+-- 	No ordering option
+-- 	Add or remove items to menu (with images)
+
+-- 	// Optionals //	
+-- 	Coupons
+
+-- }{
+-- 	DATABASE REQUIREMENTS
+-- 	1- Restaurant name
+-- 	2- Address
+-- 	3- User name (primary key)
+-- 	4- Password
+-- 	5- Rating
+-- 	6- Restaurant unique id (Primary key)(Foreign key)
+-- 	7- Number of tables (2 per table + number of tables)
+-- 	8- Timings (standard 11 - 11)
+-- 	9- Contact
+-- }
+
+-- Customer Care{
+-- 	Live chat
+
+-- }{
+--  	DATABASE REQUIREMENTS
+-- 	1- Name
+-- 	2- Mobile
+-- 	3- Password
+-- 	4- Total supports
+-- 	5- Customer support unique id
+-- 	6- Email
+
+--  } +
+--  Delivery Guy{
+--  	Code 
+--  	Customer address
+
+--  }{
+--  	DATABASE REQUIREMENTS
+-- 	1- Name
+-- 	2- Mobile
+-- 	3- Password
+-- 	4- Address
+-- 	5- Delivery guy unique id
+-- 	6- Email
+-- 	7- Profile image
+-- 	8- Rating
+--  }
+
+
+--  Coupons{
+--  	DATABASE REQUIREMENTS
+--  	1- Restaurant unique id (set to null means foodshala)
+--  	2- Coupon code
+--  	3- Start date 
+--  	4- End date
+--  	5- Item category (set to null means all)
+--  	6- By restaurant YN
+--  }
+
+--  Restaurant ratings{
+--   	DATABASE REQUIREMENTS
+--   	1- Restaurant id
+--   	2- Rating
+--   	3- Date & Time
+--   	4- User Id
+--   	5- Order reference
+--  }
+
+--  Order{
+--   	DATABASE REQUIREMENTS
+--   	1- Restaurant id
+--   	2- Order reference
+--   	3- User Id
+--   	4- Rating
+--  }
+
+--  Cart{
+--    	DATABASE REQUIREMENTS
+--    	1- Restaurant id
+-- 	2- User Id
+-- 	3- Item Id
+--  }
+--  Items{
+--    	DATABASE REQUIREMENTS
+--    	1- Restaurant id
+--    	2- Item Id
+--    	3- category
+--    	4- name
+--    	5- price
+--  }
+--  Messages{
+--   DATABASE REQUIREMENTS
+--   	1- User id
+--   	2- Message id
+--   	3- Date & Time
+
+--  }
+
+
+create table customer (
+	id int primary key auto_increment not null,
+	name varchar(100) ,
+	mobile varchar(15) ,
+	password varchar(100) ,
+	address varchar(200) ,
+	customer_unique_id varchar(100)  primary key,
+	email varchar(50) ,
+	profile_image varchar(200) ,
+	food_pref varchar(10) 
+);
+
+create table restaurant (
+	id int auto_increment not null,
+	restaurant_name varchar(100) ,
+	user_name varchar(100) UNIQUE,
+	address varchar(200) ,
+	passwords varchar(100) ,
+	rating FLOAT(2,2) ,
+	restaurant_unique_id varchar(200) UNIQUE,
+	number_of_tables int(5) ,
+	timings timestamp ,
+	contact varchar(15) ,
+    primary key(id,restaurant_unique_id,user_name)
+);
+
+	create table support (
+		id int  primary key auto_increment not null,
+		name varchar(100),
+		mobile varchar(15),
+		password varchar(100),
+		total_supports int(10),
+		support_unique_id varchar(100),
+		email varchar(100),
+		);
+
+	create table delivery_person (
+		id int  auto_increment not null,
+		name varchar(100),
+		mobile varchar(15),
+		password varchar(100),
+		address int(10),
+		unique_id varchar(100),
+		email varchar(100),
+		rating float(2,2),
+		primary key (id,unique_id)
+);
+
+	create table categories(
+		id int  auto_increment not null,
+		category_name varchar(100) unique,
+		category_unique_id varchar(100) unique,
+		updated_on timestamp
+		primary key (id,category_name,category_unique_id)
+		);
+
+	create table coupons (
+		id int  auto_increment not null,
+		restaurant_unique_id varchar(100), -- (set to null means foodshala)
+		coupon_code varchar(15),
+		coupon_unique_id varchar(50),
+		start_date timestamp,
+		end_date timestamp,
+		item_category_id varchar(100), -- (set to null means all)
+		byRestaurantYN varchar(100),
+		primary key (id,coupon_unique_id),
+		FOREIGN KEY (restaurant_unique_id ) references restaurant(restaurant_unique_id),
+        FOREIGN KEY (item_category_id) REFERENCES items(category_unique_id)
+);
+
+-- 	create table restaurant_ratings (
+-- 		id int  auto_increment not null,
+-- 		restaurant_unique_id varchar(100), 
+-- 		rating float(2,2),
+-- 		customer_unique_id varchar(50) unique not null,
+-- 		updated_on  timestamp,
+-- 		order_reference varchar(100),
+-- 		primary key (id),
+-- 		FOREIGN KEY (restaurant_unique_id ) references restaurant(restaurant_unique_id),
+--     FOREIGN KEY (order_reference) REFERENCES orders(order_reference),
+--     FOREIGN KEY (customer_unique_id) REFERENCES customer(customer_unique_id)
+-- );
+
+
+	create table orders (
+		id int  auto_increment not null,
+		order_reference varchar(100),
+		item_unique_id varchar(100),
+		restaurant_unique_id varchar(100), 
+		customer_unique_id varchar(50),
+		delivery_person_unique_id varchar(100),
+		coupon_applied_YN varchar(10),
+		coupon_code varchar(100),
+		rating float(2,2),
+		updated_on  timestamp,
+		price int(10),
+		primary key (id,order_reference),
+		FOREIGN KEY (restaurant_unique_id ) references restaurant(restaurant_unique_id),
+    FOREIGN KEY (customer_unique_id) REFERENCES customer(customer_unique_id),
+    FOREIGN KEY (delivery_person_unique_id) REFERENCES delivery_person(unique_id),  
+    FOREIGN KEY (item_unique_id) REFERENCES items(unique_id),
+    FOREIGN KEY (coupon_code) REFERENCES coupons(coupon_unique_id)  
+);
+
+	create table cart (
+		id int  auto_increment not null,
+		restaurant_unique_id varchar(100),
+		coupon_code varchar(15),
+		coupon_unique_id varchar(50),
+		updated_on timestamp,
+		item_unique_id varchar(100),
+		customer_unique_id varchar(100),
+		orderedYN varchar(10),
+		primary key (id),
+		FOREIGN KEY (restaurant_unique_id ) references restaurant(restaurant_unique_id),
+		FOREIGN KEY (customer_unique_id) references customer(customer_unique_id),
+        FOREIGN KEY (item_unique_id) REFERENCES items(item_unique_id)
+); 
+
+	create table items (
+		id int  auto_increment not null,
+		item_name varchar(100),
+		item_category_id varchar(100),
+		item_unique_id varchar(100),
+		restaurant_unique_id varchar(100),
+		customer_unique_id varchar(100),
+		updated_on timestamp,
+		price int(5),
+		primary key (id,item_unique_id),
+		FOREIGN KEY (restaurant_unique_id ) references restaurant(restaurant_unique_id),
+		FOREIGN KEY (customer_unique_id) references customer(customer_unique_id),
+		FOREIGN KEY (item_category_id) references category(category_unique_id)
+); 
+
+
+
+
+ Messages{
+  User id
+  Message id
+  Date & Time
+ }
+
+
+
+
+	create table orders (
+		id int  auto_increment not null,
+		order_reference varchar(100),
+		item_unique_id varchar(100),
+		restaurant_unique_id varchar(100), 
+		customer_unique_id varchar(50),
+		delivery_person_unique_id varchar(100),
+		coupon_applied_YN varchar(10),
+		coupon_code varchar(100),
+		rating float(2,2),
+		updated_on  timestamp,
+		price int(10),
+		primary key (id,order_reference),
+		FOREIGN KEY (restaurant_unique_id ) references restaurant(restaurant_unique_id),
+    FOREIGN KEY (customer_unique_id) REFERENCES customer(customer_unique_id),
+    FOREIGN KEY (delivery_person_unique_id) REFERENCES delivery_person(unique_id),  
+    FOREIGN KEY (item_unique_id) REFERENCES items(unique_id),
+    FOREIGN KEY (coupon_code) REFERENCES coupons(coupon_unique_id)  
+);
+
+
+	create table cart (
+		id int  auto_increment not null,
+		restaurant_unique_id varchar(100),
+		coupon_code varchar(15),
+		coupon_unique_id varchar(50),
+		updated_on timestamp,
+		item_unique_id varchar(100),
+		customer_unique_id varchar(100),
+		orderedYN varchar(10),
+		primary key (id),
+		FOREIGN KEY (restaurant_unique_id ) references restaurant(restaurant_unique_id),
+		FOREIGN KEY (customer_unique_id) references customer(customer_unique_id),
+        FOREIGN KEY (item_unique_id) REFERENCES items(item_unique_id)
+); 
+
+	create table items (
+		id int  auto_increment not null,
+		item_name varchar(100),
+		item_category_id varchar(100),
+		item_unique_id varchar(100),
+		restaurant_unique_id varchar(100),
+		customer_unique_id varchar(100),
+		updated_on timestamp,
+		price int(5),
+		primary key (id,item_unique_id),
+		FOREIGN KEY (restaurant_unique_id ) references restaurant(restaurant_unique_id),
+		FOREIGN KEY (customer_unique_id) references customer(customer_unique_id),
+		FOREIGN KEY (item_category_id) references items(item_category_id)
+); 
+
+
+pages 
+
+1 - customer Login page

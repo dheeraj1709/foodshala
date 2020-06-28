@@ -1,0 +1,25 @@
+User info{
+	1- User name (person name)
+	2- Mobile Number (Login Id)
+	3- Email (Mails, transactions, Notifying)
+	4- Address
+	5- User unique id
+	6- Category
+	7- Requirements (Interests) (req id) + frequency
+	8- created date
+}
+
+Items{
+	1- catgeory
+	2- name
+	3- units 
+	4- price/unit - our price
+	5- variety 
+	6- MRP
+	7- description
+	8- image
+}
+
+categories{
+	1- 
+}
