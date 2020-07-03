@@ -15,6 +15,7 @@ class Orders extends CI_Controller
 		$this->load->library('session');
 		$restaurant_unique_id = $this->session->userdata('userUniqueId');
 		$uniqueId = uniqid();
+		$data['userType'] = $this->session->userdata('userType');
 		$data['categories'] = $this->itemModel->getCategories();
 		$data['orderdetails'] = $this->ordersModel->getOrders($restaurant_unique_id);
 		$this->load->view('restaurants/ordersView',$data);
@@ -24,6 +25,7 @@ class Orders extends CI_Controller
 		$this->load->model('ordersModel');
 		$this->load->model('cartModel');
 		$this->load->library('session');
+		$data['userType'] = $this->session->userdata('userType');
 		$restaurant_unique_id = $this->input->post('restaurant_unique_id');
 		$item_unique_id = $this->input->post('item_unique_id');
 		$userid = $this->session->userdata('userUniqueId');
@@ -36,6 +38,7 @@ class Orders extends CI_Controller
 		$this->load->model('itemModel');
 		$this->load->model('cartModel');
 		$this->load->library('session');
+		$data['userType'] = $this->session->userdata('userType');
 		$order_reference = $this->input->post('order_reference');
 		$item_unique_id = $this->input->post('item_unique_id');
 		$restaurant_unique_id = $this->session->userdata('userUniqueId');

@@ -15,6 +15,7 @@ class Home extends CI_Controller
 		if($this->session->userdata('userType') == 2){
 		$userid = $this->session->userdata('userUniqueId');
 		$uniqueId = uniqid();
+		$data['userType'] = $this->session->userdata('userType');
 		$data['name'] = $this->session->userdata('userName');
 		$data['authToken'] = $this->session->userdata('authToken');
 		$data['pastOrders'] = $this->homeModel->getPastOrders($userid);
@@ -22,7 +23,7 @@ class Home extends CI_Controller
 		$data['joke'] = $this->getJoke();
 		$data['value'] = $this->homeModel->getPastOrdersValue($userid);
 		$data['orderReferences'] = $this->uniqueOrderReference();
-		// print_r($data);
+		 // print_r($data);
 		$this->load->view('customers/home',$data); 
 		}
 		else{
@@ -37,6 +38,7 @@ class Home extends CI_Controller
 		if($this->session->userdata('userType') == 1){
 		$userid = $this->session->userdata('userUniqueId');
 		$uniqueId = uniqid();
+		$data['userType'] = $this->session->userdata('userType');
 		$data['name'] = $this->session->userdata('userName');
 		$data['authToken'] = $this->session->userdata('authToken');
 		$data['joke'] = $this->getJoke();

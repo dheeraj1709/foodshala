@@ -126,11 +126,12 @@
 					<span class="past_orders_heading text-center pl-5">Past Orders <?php echo " Rs ".$price."/-"; ?></span>
 					<?php  // print_r($pastOrders); ?>
 					<div class="orders_list">
-						<?php // print_r($pastOrders); ?>
+						<?php // print_r($orderReferences); ?>
 
 				<?php	foreach($orderReferences as $reference){ ?>
+					<?php //print_r($pastOrders);print_r('post'); ?>
 						<span class="order_by_reference">
-							<span class="order_reference" style="font-size:0.75rem"><?php echo "Order No: ". $reference->order_reference; ?><?php if(isset($order->delivery_code)){echo " -> ".$order->delivery_code;} ?></span>
+							<span class="order_reference" style="font-size:0.75rem"><?php echo "Order No: ". $reference->order_reference; ?><?php echo " -> ".$order->delivery_code; ?></span>
 							<?php  foreach($pastOrders as $order){ ?>
 					<?php if($reference->order_reference == $order->order_reference){ ?>
 							<span style="display: block" class="d-flex">

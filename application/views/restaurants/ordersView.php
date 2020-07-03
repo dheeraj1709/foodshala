@@ -21,7 +21,9 @@
 	<?php // print_r(json_encode($orderdetails)); ?>
 	<div>
 		<div>
-			<?php foreach($orderdetails as $item){ 
+			<?php 
+			if(count($orderdetails) > 0){
+			foreach($orderdetails as $item){ 
 					foreach($categories as $category){
 						if($item->item_category_id == $category->category_unique_id){
 				?>
@@ -38,7 +40,11 @@
 					</span>
 				</div>
 			</div>
-				<?php } } } ?>
+				<?php } } }  } else{ ?>
+					<div style="height: 100vh;width:100vw;display: flex">
+						<h1 style="position: fixed;top:40%;left:40%;color:green">No Current Orders !!</h1>
+				</div>
+				<?php }?>
 		</div>
 	</div>
 	<script type="text/javascript">
