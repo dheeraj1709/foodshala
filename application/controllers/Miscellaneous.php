@@ -12,16 +12,19 @@ class Miscellaneous extends CI_Controller
 
 	public function items(){
 		$this->load->library('session');
+		// echo $this->session->userdata('userType');
 		if($this->session->has_userdata('userType')){
 			if(intval($this->session->userdata('userType')) == 1 || intval($this->session->has_userdata('userType')) == 4){
 				$data['categories'] = $this->getCategories();
 				$data['name'] = $this->session->userdata('userName');
 				$data['authToken'] = $this->session->userdata('authToken');
 				$data['userType'] = $this->session->userdata('userType');
+
 				$this->load->view('restaurants/addEditItems',$data);
 			}else{
 				redirect('Auth');
 			}
+
 		}
 	}
 

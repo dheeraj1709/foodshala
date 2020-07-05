@@ -28,6 +28,7 @@ class Cart extends CI_Controller
 		$this->load->model('cartModel');
 		$this->load->model('itemModel');
 		$this->load->library('session');
+		$data['userType'] = $this->session->userdata('userType');
 		$userid = $this->session->userdata('userUniqueId');
 		$data['cartdetails'] = $this->cartModel->getCartDetailsByUser($userid);
 		$data['categories'] = $this->itemModel->getCategories();
