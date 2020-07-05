@@ -38,7 +38,7 @@
 	<div class="containers">
 		<div class="menu_container">
 			<?php if(isset($showCSS)){ ?>
-			<div style="font-size: 3rem;color:#000080;padding-left: 9rem;font-weight: 700">Menu <i><a href="<?php echo base_url('orders/getOrders');?>"> <button>Add Item </button></a></i></div>
+			<div style="font-size: 3rem;color:#000080;padding-left: 3rem;font-weight: 700">Menu <i><a href="<?php echo base_url('orders/getOrders');?>" > <button style="font-size: 1.5rem;color:#000080;padding-left: 3rem;font-weight: 700;background:transparent;border:1px solid rgba(0,0,0,0.1);">Add Item </button></a></i></div>
 			<?php } ?>
 			<div class="row">
 				<?php foreach($categories as $category){ ?>

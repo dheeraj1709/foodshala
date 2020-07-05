@@ -18,10 +18,11 @@ class Auth extends CI_Controller
 				redirect('Home/customerIndexPage');
 				}
 			}else{
+				$data['userType'] = 0;
 				$data['authToken'] = null;
 				// $data['name'] = null;
 			}
-		$this->load->view('customers/customer_login');
+		$this->load->view('customers/customer_login',$data);
 	}
 
 	public function restaurantLogin(){
@@ -33,9 +34,10 @@ class Auth extends CI_Controller
 				redirect('Home/restaurantIndexPage');
 				}
 			}else{
+				$data['userType'] = 0;
 				$data['authToken'] = null;
 			}
-		$this->load->view('restaurants/restaurant_login');
+		$this->load->view('restaurants/restaurant_login',$data);
 	}
 
 	public function customerSignUp(){

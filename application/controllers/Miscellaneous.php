@@ -61,6 +61,7 @@ class Miscellaneous extends CI_Controller
 			$user = null;
 			$data['categories'] = $this->getCategories();
 			$data['total'] = [];
+			$data['userType'] = $this->session->userdata('userType');
 			$totalPerCategory = $this->itemModel->getTotalPerCategory($user);
 			foreach($totalPerCategory as $category){
 				$data['total'][$category->item_category_id] = $category->count;
@@ -72,6 +73,7 @@ class Miscellaneous extends CI_Controller
 				$user = null;
 				$data['categories'] = $this->getCategories();
 				$data['total'] = [];
+				$data['userType'] = 0;
 				$totalPerCategory = $this->itemModel->getTotalPerCategory($user);
 				foreach($totalPerCategory as $category){
 					$data['total'][$category->item_category_id] = $category->count;
