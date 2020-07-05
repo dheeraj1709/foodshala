@@ -6,6 +6,8 @@ class Auth extends CI_Controller
 {
 	public function index()
 	{	
+        $data['userType'] = 0;
+				$data['authToken'] = null;
 		return redirect('Auth/customerLogin',$data);
 	}
 
@@ -16,10 +18,13 @@ class Auth extends CI_Controller
 				$data['authToken'] = $this->session->userdata('authToken');
 				$data['name'] = $this->session->userdata('userName');
 				redirect('Home/customerIndexPage');
-				}
+				}else{
+                    redirect('Auth/restaurantLogin');
+                }
 			}else{
 				$data['userType'] = 0;
 				$data['authToken'] = null;
+                redirect('Home/restaurantIndexPage');
 				// $data['name'] = null;
 			}
 		$this->load->view('customers/customer_login',$data);
@@ -33,19 +38,24 @@ class Auth extends CI_Controller
 				$data['name'] = $this->session->userdata('userName');
 				redirect('Home/restaurantIndexPage');
 				}
+                else('Auth/customer_login');
 			}else{
 				$data['userType'] = 0;
 				$data['authToken'] = null;
 			}
-		$this->load->view('restaurants/restaurant_login',$data);
+		$this->load->view('restaurants/restaurantLogin',$data);
 	}
 
 	public function customerSignUp(){
-		$this->load->view('customers/customer_signup');
+        $data['userType'] = 0;
+				$data['authToken'] = null;
+		$this->load->view('customers/customer_signup',$data);
 	}
 
 	public function restaurantSignUp(){
-		$this->load->view('restaurants/restaurant_signup');
+        $data['userType'] = 0;
+				$data['authToken'] = null;
+		$this->load->view('restaurants/restaurant_signup',$data);
 	}
 
 	public function customerLoginData(){
