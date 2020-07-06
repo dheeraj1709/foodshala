@@ -18,13 +18,13 @@ class Auth extends CI_Controller
 				$data['authToken'] = $this->session->userdata('authToken');
 				$data['name'] = $this->session->userdata('userName');
 				redirect('Home/customerIndexPage');
-				}else{
-                    redirect('Auth/restaurantLogin');
+				}
+				if($this->session->userdata('userType') == 1){
+          redirect('Auth/restaurantLogin');
                 }
 			}else{
 				$data['userType'] = 0;
 				$data['authToken'] = null;
-                redirect('Home/restaurantIndexPage');
 				// $data['name'] = null;
 			}
 		$this->load->view('customers/customer_login',$data);
@@ -38,12 +38,14 @@ class Auth extends CI_Controller
 				$data['name'] = $this->session->userdata('userName');
 				redirect('Home/restaurantIndexPage');
 				}
-                else('Auth/customer_login');
+				if($this->session->userdata('userType') == 2){
+          redirect('Auth/customer_login');
+                }
 			}else{
 				$data['userType'] = 0;
 				$data['authToken'] = null;
 			}
-		$this->load->view('restaurants/restaurantLogin',$data);
+		$this->load->view('restaurants/restaurant_login',$data);
 	}
 
 	public function customerSignUp(){

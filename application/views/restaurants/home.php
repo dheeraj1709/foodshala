@@ -75,13 +75,25 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+@media only screen and (max-width:600px){
+	.order_by_reference{
+		text-align: center;
+	}
+	.sidebar_image{
+		height: 6rem;
+	}
+	.order_reference{
+		font-size:1rem !important;
+	}
+}
+
 	</style>
 </head>
 <body>
 	<?php $this->load->view('generalFiles/navbar.php'); ?>
 	<div class="containers">
-		<div class="box_containers d-flex ">
-			<div class="col-9 pt-2">
+		<div class="box_containers d-md-flex ">
+			<div class="col-12 col-md-9 pt-2">
 				<div class="d-flex">
 					<span class="col-3 name-welcome"><?php echo 'Welcome '.ucfirst($name); ?></span>
 					<span class="d-flex col-9">
@@ -95,7 +107,7 @@
 					<span class="menu_tab"></span>
 				</div>
 			</div>
-			<div class="right_bar col-3">
+			<div class="right_bar col-12 col-md-3">
 
 						<?php 
 						$price = 0;

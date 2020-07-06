@@ -29,6 +29,18 @@
 				height:80vh;
 			}
 		<?php } ?>
+		@media only screen and (max-width:600px){
+			.row{
+				padding-top: 4rem;
+				padding-left:0rem;
+				overflow-y:auto;
+				padding-right:0rem  !important;
+			}
+			.item_card_body a{
+				font-size: 1rem;
+				color: rgba(0,0,0,0.5);
+			}
+		}
 	</style>
 </head>
 <body>

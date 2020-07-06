@@ -80,7 +80,13 @@
 			border: 1px solid rgba(255,255,255,0.3);
 			box-shadow: 0 0 10px 2px rgba(255,255,255,0.3);
 		}
-
+		@media only screen and (max-width:600px){
+			.box-containers{
+				margin-top:20%;
+				padding: 0;
+				height: 100vh
+			}
+		}
 	</style>
 	</style>
 </head>
@@ -90,6 +96,7 @@
 		<div class="box-containers">
 			<div class="boxes">
 		<form method="POST" action="<?php echo base_url('Auth/restaurantSignUpData')?>" class="box-form">
+			<div class="heading">Restaurant Signup</div>
 			<div class="user_input">
 				<span class="input_fields">
 				<label>Name</label>

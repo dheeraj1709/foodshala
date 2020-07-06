@@ -13,7 +13,7 @@
 
 		}
 		.image{
-			background: url(<?php echo  base_url('assets/images/c_signup.jpg')?>);
+			background: url("<?php echo  base_url('assets/images/c_signup.jpg')?>");
 			background-size: cover;
 			filter:10px;
 			position: fixed;
@@ -79,7 +79,13 @@
 			border: 1px solid rgba(255,255,255,0.3);
 			box-shadow: 0 0 10px 2px rgba(255,255,255,0.3);
 		}
-
+		@media only screen and (max-width:600px){
+			.box-containers{
+				margin-top:20%;
+				padding: 0;
+				height: 100vh
+			}
+		}
 	</style>
 </head>
 <body>

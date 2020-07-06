@@ -42,6 +42,15 @@
 		max-height: 90%;
     overflow: auto;
 	}
+	.past_orders_heading{
+		background: rgba(0,0,0,0.7);
+		display: block;
+		color:rgba(255,255,255,0.7) !important;
+		text-align: center
+	}
+	.past_orders_heading a{
+		color:rgba(255,255,255,0.7) !important;
+	}
 	.row{
 		height: 75vh;
 	}
@@ -66,13 +75,24 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+@media only screen and (max-width:600px){
+	.order_by_reference{
+		text-align: center;
+	}
+	.sidebar_image{
+		height: 6rem;
+	}
+	.order_reference{
+		font-size:1rem !important;
+	}
+}
 	</style>
 </head>
 <body>
 	<?php $this->load->view('generalFiles/navbar.php'); ?>
 	<div class="containers">
-		<div class="box_containers d-flex ">
-			<div class="col-9 pt-2">
+		<div class="box_containers d-md-flex ">
+			<div class="col-12 col-md-9 pt-2">
 				<div class="d-flex">
 					<span class="col-3 name-welcome"><?php echo 'Welcome '.ucfirst($name); ?></span>
 					<span class="d-flex col-9">
@@ -86,7 +106,7 @@
 					<span class="menu_tab"></span>
 				</div>
 			</div>
-			<div class="right_bar col-3">
+			<div class="right_bar col-12 col-md-3">
 
 						<?php 
 						$price = 0;
@@ -94,7 +114,7 @@
 									$price = $price + $item->price;
 						} ?>
 				<div class="in_cart">
-					<span class="past_orders_heading text-center pl-5">
+					<span class="past_orders_heading text-center">
 						<a href="<?php echo base_url('cart/getCartDetails'); ?>">Cart</a></span>
 					<?php  // print_r($pastOrders); ?>
 					<span class="orders_list">
@@ -123,7 +143,7 @@
 						foreach($pastOrders as $order){
 									$price = $price + $order->price;
 						} ?>
-					<span class="past_orders_heading text-center pl-5">Past Orders <?php echo " Rs ".$price."/-"; ?></span>
+					<span class="past_orders_heading text-center">Past Orders <?php echo " Rs ".$price."/-"; ?></span>
 					<?php  // print_r($pastOrders); ?>
 					<div class="orders_list">
 						<?php // print_r($orderReferences); ?>
