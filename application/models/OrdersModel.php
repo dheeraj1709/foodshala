@@ -43,6 +43,10 @@ class OrdersModel extends CI_Model {
 		$this->load->database();
 		$query = $this->db->query("UPDATE orders set delivery_code = null ,delivered= 'Y' where order_reference = '$order_reference' and delivery_code = '$delivery_code' ");
 	}
+	// public function set($order_reference,$delivery_code){
+	// 	$this->load->database();
+	// 	$query = $this->db->query("UPDATE orders set coupon_code = '$delivery_code' ");
+	// }
 
 }
 

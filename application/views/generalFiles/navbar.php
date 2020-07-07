@@ -49,7 +49,7 @@
 <body>
 	<div class="navbar-div">
 		<div class="navbar-content">
-			<span class="navbar-logo mr-auto"><a href="<?php if($userType == 2){echo site_url('/');}else{echo site_url('/foodshala/Home/restaurantIndexPage');} ?>" style="color:white">Foodshala</a></span>
+			<span class="navbar-logo mr-auto"><a href="<?php if($userType == 2){echo site_url('/');}else{echo site_url('/Home/restaurantIndexPage');} ?>" style="color:white">Foodshala</a></span>
 			<?php
 				if(isset($authToken)){?>
 					<span class="logout-button ml-auto mr-4 ">

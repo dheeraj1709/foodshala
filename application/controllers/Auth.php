@@ -39,7 +39,7 @@ class Auth extends CI_Controller
 				redirect('Home/restaurantIndexPage');
 				}
 				if($this->session->userdata('userType') == 2){
-          redirect('Auth/customer_login');
+          redirect('Auth/customerLogin');
                 }
 			}else{
 				$data['userType'] = 0;
@@ -63,7 +63,7 @@ class Auth extends CI_Controller
 	public function customerLoginData(){
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
-		// $password = md5($password);
+		 $password = md5($password);
 		$this->load->model('authModel');
 		$this->load->library('session');
 		$userDetails = $this->authModel->fetchUser($email,$password);

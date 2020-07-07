@@ -56,8 +56,8 @@ class Orders extends CI_Controller
 		$this->load->model('cartModel');
 		$this->load->library('session');
 		$var = file_get_contents('php://input');
-		$order_reference = json_decode($var)->orderID;
-		$delivery_code = json_decode($var)->delivery_code;
+		$order_reference = $this->input->get('orderID');
+		$delivery_code = $this->input->get('delivery_code');
 		$existYN = 	$this->ordersModel->getIdToVerify($order_reference,$delivery_code);
 		if(count($existYN) > 0){		
 		$this->ordersModel->verifyID($order_reference,$delivery_code);
@@ -66,7 +66,6 @@ class Orders extends CI_Controller
 				http_response_code(401);
 			}
 	}
-
 
 
 }

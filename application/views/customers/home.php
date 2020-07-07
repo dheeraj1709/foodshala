@@ -75,6 +75,15 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+    .order_reference_val::after{
+        content:'Not Delivered';
+        color:red;
+    }
+    .order_reference_del::after{
+        content:'Delivered';
+        color:green;
+        padding:1px;
+    }
 @media only screen and (max-width:600px){
 	.order_by_reference{
 		text-align: center;
@@ -151,7 +160,18 @@
 				<?php	foreach($orderReferences as $reference){ ?>
 					<?php //print_r($pastOrders);print_r('post'); ?>
 						<span class="order_by_reference">
-							<span class="order_reference" style="font-size:0.75rem"><?php echo "Order No: ". $reference->order_reference; ?><?php echo " -> ".$order->delivery_code; ?></span>
+							<span class="order_reference" style="font-size:0.75rem">
+                                <?php echo "Order No: ". $reference->order_reference; ?>
+                                    <?php if(isset($reference->delivery_code)){
+                                        if($order->delivered == 'N'){ ?>
+                                         <span class="order_reference_val">
+                                            <?php echo " -> ".$reference->delivery_code; ?>
+                                         </span>
+                                    <?php }
+                                    }else{ ?>
+                                        <span class="order_reference_del"> </span>
+                                   <?php } ?>
+                            </span>
 							<?php  foreach($pastOrders as $order){ ?>
 					<?php if($reference->order_reference == $order->order_reference){ ?>
 							<span style="display: block" class="d-flex">

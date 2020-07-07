@@ -55,6 +55,7 @@ class Home extends CI_Controller
 
 	public function deliver(){
 		$this->load->model('homeModel');
+				$data['userType'] = 0;
 		$data['Orders'] = $this->homeModel->ordersToDeliver();
 		$this->load->view('delivery/deliver',$data);
 	}
@@ -85,4 +86,6 @@ class Home extends CI_Controller
 		$joke = $jokes[rand(0,$totalJokes-1)];
 		return $joke->joke;
 	}
+
+
 }

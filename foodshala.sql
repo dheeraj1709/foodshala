@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 28, 2020 at 07:12 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Host: sql200.epizy.com
+-- Generation Time: Jul 07, 2020 at 05:09 AM
+-- Server version: 5.6.47-87.0
+-- PHP Version: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `foodshala`
+-- Database: `epiz_26128910_foodshala`
 --
 
 -- --------------------------------------------------------
@@ -36,7 +36,7 @@ CREATE TABLE `cart` (
   `customer_unique_id` varchar(100) DEFAULT NULL,
   `orderedYN` varchar(10) DEFAULT NULL,
   `cart_item_unique_id` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cart`
@@ -77,7 +77,15 @@ INSERT INTO `cart` (`id`, `restaurant_unique_id`, `updated_on`, `item_unique_id`
 (39, '5ef826d6150b0', '2020-06-28 12:44:39', '5ef8274320841', '', 'N', '5ef890b706e37'),
 (40, '5ef3a88101ae7', '2020-06-28 12:45:04', '5ef50d8ca73a3', '', 'N', '5ef890d0dcf35'),
 (41, '5ef3a88101ae7', '2020-06-28 12:45:47', '5ef50d8ca73a3', '', 'N', '5ef890fb2d110'),
-(42, '5ef826d6150b0', '2020-06-28 14:17:02', '5ef8274320841', 'ew', 'Y', '5ef89cc3a5f95');
+(42, '5ef826d6150b0', '2020-06-28 14:17:02', '5ef8274320841', 'ew', 'Y', '5ef89cc3a5f95'),
+(43, '5ef826d6150b0', '2020-06-28 18:36:02', '5ef8274320841', 'ew', 'Y', '5ef8e2d589aba'),
+(44, '5ef3a88101ae7', '2020-06-28 18:36:02', '5ef50da14b429', 'ew', 'Y', '5ef8e2df79eb2'),
+(45, '5ef3a88101ae7', '2020-06-29 02:56:24', '5ef50d8ca73a3', 'ew', 'Y', '5ef901496b1f7'),
+(46, '5ef3a88101ae7', '2020-06-30 14:46:47', '5ef50d7d87fcc', 'ew', 'Y', '5efb4fed1d408'),
+(48, '5ef826d6150b0', '2020-07-06 11:57:21', '5ef8274320841', 'ew', 'Y', '5f01d10e8c69b'),
+(49, '5ef3a88101ae7', '2020-07-06 12:01:18', '5ef50d7d87fcc', 'ew', 'Y', '5f03125c5986f'),
+(50, '5ef3a88101ae7', '2020-07-07 04:24:22', '5f03183235dec', 'ew', 'N', '5f03f8cdc1b9f'),
+(51, '5ef3a88101ae7', '2020-07-07 08:22:11', '5f03183235dec', '5f03fa1f2fb69', 'Y', '5f04307bc8640');
 
 -- --------------------------------------------------------
 
@@ -90,7 +98,7 @@ CREATE TABLE `categories` (
   `category_name` varchar(100) NOT NULL,
   `category_unique_id` varchar(100) NOT NULL,
   `updated_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
@@ -117,7 +125,7 @@ CREATE TABLE `coupons` (
   `item_category_id` varchar(100) DEFAULT NULL,
   `byRestaurantYN` varchar(100) DEFAULT NULL,
   `percentage` varchar(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `coupons`
@@ -142,15 +150,18 @@ CREATE TABLE `customer` (
   `email` varchar(50) DEFAULT NULL,
   `profile_image` varchar(200) DEFAULT NULL,
   `food_pref` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`id`, `name`, `mobile`, `password`, `address`, `customer_unique_id`, `email`, `profile_image`, `food_pref`) VALUES
-(1, 're', 'ew', 'ew', 'ew', 'ew', 'eqwe', 'eweq', 'eeqw'),
-(3, 'dr', '9090', 'dr', 'nal', '5ef3ab8291be2', 'd@d.d', '', 'V');
+(1, 're', 'ew', '79a628b2d968cfe1a7f9c5e398f6b96a', 'ew', 'ew', 'eqwe', 'eweq', 'eeqw'),
+(3, 'dr', '9090', 'dr', 'nal', '5ef3ab8291be2', 'd@d.d', '', 'V'),
+(4, 'kumar', '9505062168', '79cfac6387e0d582f83a29a04d0bcdc4', '4-11', '5f03f8f8515b2', 'kumar@gmail.com', '', 'V'),
+(5, 'w', 'w', 'f1290186a5d0b1ceab27f4e77c0c5d68', 'w', '5f03fa1f2fb69', 'w', '', 'V'),
+(6, 'a', 'a', '0cc175b9c0f1b6a831c399e269772661', 'a', '5f042d4b8eacc', 'a', '', 'V');
 
 -- --------------------------------------------------------
 
@@ -167,7 +178,7 @@ CREATE TABLE `delivery_person` (
   `unique_id` varchar(100) NOT NULL,
   `email` varchar(100) DEFAULT NULL,
   `rating` float(2,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -185,17 +196,18 @@ CREATE TABLE `items` (
   `updated_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `price` int(5) DEFAULT NULL,
   `item_image` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`id`, `item_name`, `vegYN`, `item_category_id`, `item_unique_id`, `restaurant_unique_id`, `updated_on`, `price`, `item_image`) VALUES
-(9, 'D', 'Veg', '5rebredfw', '5ef50d7d87fcc', '5ef3a88101ae7', '2020-06-25 20:47:57', 100, ''),
-(10, 'H', 'Veg', '5tewdsamne', '5ef50d8ca73a3', '5ef3a88101ae7', '2020-06-25 20:48:12', 200, '5ef50d8c9e51a-5ef50d8c9e51c.png'),
-(11, 'EE', 'Veg', '5ecfgabty21', '5ef50da14b429', '5ef3a88101ae7', '2020-06-25 20:48:33', 300, '5ef50da140bc8-5ef50da140bcb.png'),
-(12, 'Spinach', 'Veg', '5tewdsamne', '5ef8274320841', '5ef826d6150b0', '2020-06-28 05:14:43', 150, '5ef82743036f7-5ef82743036fa.png');
+(9, 'Dal Tadka', 'Veg', '5rebredfw', '5ef50d7d87fcc', '5ef3a88101ae7', '2020-07-06 11:23:36', 100, '5ef50d8c9e51a-5ef50d8c9e51c.png'),
+(10, 'Chilly paneer', 'Veg', '5tewdsamne', '5ef50d8ca73a3', '5ef3a88101ae7', '2020-07-06 11:23:46', 200, '5ef50d8c9e51a-5ef50d8c9e51c.png'),
+(11, 'Dog\'s Pedigree', 'Veg', '5ecfgabty21', '5ef50da14b429', '5ef3a88101ae7', '2020-07-06 11:24:14', 300, '5ef50d8c9e51a-5ef50d8c9e51c.png'),
+(12, 'Spinach', 'Veg', '5tewdsamne', '5ef8274320841', '5ef826d6150b0', '2020-07-06 11:09:14', 150, '5ef50d8c9e51a-5ef50d8c9e51c.png'),
+(13, 'Kitchen Kulfi', 'Veg', '5tewdsamne', '5f03183235dec', '5ef3a88101ae7', '2020-07-06 12:26:03', 150, '5f031831eb251-5f031831eb254.png');
 
 -- --------------------------------------------------------
 
@@ -207,7 +219,7 @@ CREATE TABLE `jokes` (
   `id` int(11) NOT NULL,
   `joke` varchar(500) DEFAULT NULL,
   `updated_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jokes`
@@ -251,61 +263,33 @@ CREATE TABLE `orders` (
   `delivered` varchar(10) DEFAULT NULL,
   `packed` varchar(20) DEFAULT NULL,
   `delivery_code` varchar(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `order_reference`, `item_unique_id`, `restaurant_unique_id`, `customer_unique_id`, `delivery_person_unique_id`, `coupon_applied_YN`, `coupon_code`, `rating`, `updated_on`, `price`, `delivered`, `packed`, `delivery_code`) VALUES
-(1, '', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-25 21:37:46', 300, NULL, NULL, NULL),
-(2, '', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-25 21:37:46', 300, NULL, NULL, NULL),
-(3, '', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-25 21:37:59', 300, NULL, NULL, NULL),
-(4, '', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-25 21:37:59', 300, NULL, NULL, NULL),
-(5, '5ef51961466c2', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-25 21:38:41', 300, NULL, NULL, NULL),
-(6, '5ef51961466c2', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 09:46:33', 300, NULL, 'Y', NULL),
-(7, '5ef51ac0dea44', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 17:30:27', 300, NULL, 'Y', NULL),
-(8, '5ef51ac0dea44', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 17:39:18', 300, NULL, 'Y', NULL),
-(9, '5ef6307aa0bd6', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 17:39:20', 100, NULL, 'Y', NULL),
-(10, '5ef630ec172b8', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 17:39:21', 100, NULL, 'Y', NULL),
-(11, '5ef631b71bd13', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 17:39:23', 300, NULL, 'Y', NULL),
-(12, '5ef63444d0ef6', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 17:53:15', 200, NULL, 'Y', NULL),
-(13, '5ef63531e778c', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 17:53:13', 200, NULL, 'Y', NULL),
-(14, '5ef635c75df9a', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 17:53:11', 200, NULL, 'Y', NULL),
-(15, '5ef63637c3089', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 18:10:41', 200, NULL, 'Y', NULL),
-(16, '5ef6366a339d3', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 18:10:43', 200, NULL, 'Y', NULL),
-(17, '5ef6372c323b9', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 18:10:45', 200, NULL, 'Y', NULL),
-(18, '5ef6377437262', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 18:10:46', 200, NULL, 'Y', NULL),
-(19, '5ef637bc641e0', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 18:43:24', 200, NULL, 'Y', NULL),
-(20, '5ef638b55a75d', '5ef50d8ca73a3', '5ef3a88101ae7', '', NULL, NULL, NULL, NULL, '2020-06-26 18:10:48', 200, NULL, 'Y', NULL),
-(21, '5ef6391b214d3', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 18:10:36', 200, NULL, 'Y', NULL),
-(22, '5ef6396ca38dc', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-26 18:10:50', 300, NULL, 'Y', NULL),
-(26, '5ef736f32b152', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 12:09:23', 200, 'N', 'N', NULL),
-(27, '5ef74218ada85', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 12:56:56', 300, 'N', 'N', NULL),
-(28, '5ef74218ada85', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 12:56:57', 300, 'N', 'N', NULL),
-(29, '5ef7a75c41fa4', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:09:00', 100, 'N', 'N', NULL),
-(30, '5ef7a7d06649a', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:10:56', 100, 'N', 'N', NULL),
-(31, '5ef7a81fbd8fa', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:12:16', 100, 'N', 'N', NULL),
-(32, '5ef7a8b71293c', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:14:47', 100, 'N', 'N', NULL),
-(33, '5ef7a92d344fc', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:16:45', 100, 'N', 'N', NULL),
-(34, '5ef7a95bebf03', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:17:32', 100, 'N', 'N', NULL),
-(35, '5ef7aa8087f7e', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:22:24', 100, 'N', 'N', NULL),
-(36, '5ef7aad865df5', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:23:52', 78, 'N', 'N', NULL),
-(37, '5ef7ab1e1f297', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 16:57:03', 78, 'Y', 'Y', NULL),
-(38, '5ef7ab9dedcdf', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:27:10', 75, 'N', 'N', NULL),
-(39, '5ef7abd2d1885', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:28:03', 75, 'N', 'N', NULL),
-(40, '5ef7ac3505bba', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:29:41', 78, 'N', 'N', NULL),
-(41, '5ef7ad9c8967c', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 14:20:45', 78, 'N', 'Y', NULL),
-(42, '5ef7add488d3e', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 20:36:36', 78, 'N', 'N', NULL),
-(43, '5ef7ae8ca961c', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 14:21:45', 78, 'N', 'Y', NULL),
-(44, '5ef7affb82104', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 11:48:37', 78, 'N', 'Y', NULL),
-(45, '5ef7b69b9f2e0', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 21:14:03', 75, 'N', 'N', NULL),
-(46, '5ef7c3059e1d0', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-27 22:07:01', 225, 'N', 'N', NULL),
-(47, '5ef7c38ec4812', '5ef50d8ca73a3', '5ef826d6150b0', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 11:59:15', 150, 'N', 'N', NULL),
-(48, '5ef89408eb9ac', '5ef8274320841', '5ef826d6150b0', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 14:19:46', 113, 'N', 'Y', NULL),
-(49, '5ef89408eb9ac', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 14:19:46', 150, 'N', 'Y', NULL),
-(50, '5ef89408eb9ac', '5ef8274320841', '5ef826d6150b0', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 14:19:46', 113, 'N', 'Y', NULL),
-(51, '5ef8a65ebd8d8', '5ef8274320841', '5ef826d6150b0', 'ew', NULL, NULL, NULL, NULL, '2020-06-28 14:17:02', 150, 'N', 'N', NULL);
+(28, '5ef74218ada85', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-07-07 05:16:35', 300, 'Y', 'Y', NULL),
+(29, '5ef7a75c41fa4', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-07-07 05:53:16', 100, 'Y', 'Y', NULL),
+(30, '5ef7a7d06649a', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-07-07 05:58:19', 100, 'Y', 'Y', NULL),
+(31, '5ef7a81fbd8fa', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-07-07 09:06:41', 100, 'N', 'N', '6942'),
+(32, '5ef7a8b71293c', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:39', 100, 'N', 'Y', '5272'),
+(33, '5ef7a92d344fc', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:33', 100, 'N', 'Y', '4685'),
+(34, '5ef7a95bebf03', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:32', 100, 'N', 'Y', '7569'),
+(35, '5ef7aa8087f7e', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:31', 100, 'N', 'Y', '3003'),
+(36, '5ef7aad865df5', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:30', 78, 'N', 'Y', '1454'),
+(38, '5ef7ab9dedcdf', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:27', 75, 'N', 'Y', '9380'),
+(39, '5ef7abd2d1885', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:29', 75, 'N', 'Y', '9292'),
+(40, '5ef7ac3505bba', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:09', 78, 'N', 'Y', '1873'),
+(42, '5ef7add488d3e', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:07', 78, 'N', 'Y', '3649'),
+(45, '5ef7b69b9f2e0', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:21', 75, 'N', 'Y', '2406'),
+(46, '5ef7c3059e1d0', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-06-30 14:51:04', 225, 'N', 'Y', '6281'),
+(52, '5ef8e2eb41bae', '5ef8274320841', '5ef826d6150b0', 'ew', NULL, NULL, NULL, NULL, '2020-07-07 08:10:03', 150, 'Y', 'Y', NULL),
+(53, '5ef8e2eb41bae', '5ef50da14b429', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-07-07 08:10:11', 300, 'Y', 'Y', NULL),
+(54, '5ef958315d1ac', '5ef50d8ca73a3', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-07-07 08:40:52', 200, 'Y', 'Y', NULL),
+(55, '5efb502f671a4', '5ef50d7d87fcc', '5ef3a88101ae7', 'ew', NULL, NULL, NULL, NULL, '2020-07-07 09:06:29', 75, 'Y', 'Y', '6789'),
+(58, '5f04308a10b84', '5f03183235dec', '5ef3a88101ae7', '5f03fa1f2fb69', NULL, NULL, NULL, NULL, '2020-07-07 08:22:11', 150, 'N', 'N', NULL);
 
 -- --------------------------------------------------------
 
@@ -324,15 +308,16 @@ CREATE TABLE `restaurant` (
   `number_of_tables` int(5) DEFAULT NULL,
   `timings` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `contact` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `restaurant`
 --
 
 INSERT INTO `restaurant` (`id`, `restaurant_name`, `user_name`, `address`, `passwords`, `rating`, `restaurant_unique_id`, `number_of_tables`, `timings`, `contact`) VALUES
-(1, 'Dheeraj Bhai', 'dr', 'nal', 'b4688aaaaf17fad03225929fe56ad458', NULL, '5ef3a88101ae7', 60, '0000-00-00 00:00:00', '9090'),
-(2, 'Nalgonda rest', 'da', 'hifi', 'b4688aaaaf17fad03225929fe56ad458', NULL, '5ef826d6150b0', 80, '0000-00-00 00:00:00', '92103921');
+(1, 'Dheeraj Bhai Restaurant', 'dr', 'nal', 'b4688aaaaf17fad03225929fe56ad458', NULL, '5ef3a88101ae7', 60, '2020-07-06 11:24:48', '9090'),
+(2, 'India Restaurant', 'da', 'hifi', 'b4688aaaaf17fad03225929fe56ad458', NULL, '5ef826d6150b0', 80, '2020-07-06 11:25:06', '92103921'),
+(3, 'Delhi Restaurant', 'delhi', 'Delhi', '76597d97e36fb7adda5d26b609a23452', NULL, '5f043b71b6c05', 48, '0000-00-00 00:00:00', '7878');
 
 -- --------------------------------------------------------
 
@@ -348,7 +333,7 @@ CREATE TABLE `support` (
   `total_supports` int(10) DEFAULT NULL,
   `support_unique_id` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -426,7 +411,7 @@ ALTER TABLE `support`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -444,7 +429,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `delivery_person`
@@ -456,7 +441,7 @@ ALTER TABLE `delivery_person`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `jokes`
@@ -468,13 +453,13 @@ ALTER TABLE `jokes`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `support`

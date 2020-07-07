@@ -7,7 +7,7 @@ class HomeModel extends CI_Model {
 
 	public function getPastOrders($userid){
 		$this->load->database();
-		$query = $this->db->query("SELECT *,orders.updated_on as updated_on from orders inner join restaurant on restaurant.restaurant_unique_id = orders.restaurant_unique_id inner join items on items.item_unique_id = orders.item_unique_id where customer_unique_id = '$userid' and delivered = 'N' or delivered = 'Y' ");
+		$query = $this->db->query("SELECT *,orders.updated_on as updated_on from orders inner join restaurant on restaurant.restaurant_unique_id = orders.restaurant_unique_id inner join items on items.item_unique_id = orders.item_unique_id where customer_unique_id = '$userid' and (delivered = 'N' or delivered = 'Y') ");
 		// print_r($query->result());
 		return $query->result();
 	}
@@ -32,7 +32,7 @@ class HomeModel extends CI_Model {
 
 	public function getOrderReferences($userid){
 		$this->load->database();
-		$query = $this->db->query("SELECT order_reference from orders where customer_unique_id = '$userid' and delivered = 'N' or delivered = 'Y' group by order_reference");
+		$query = $this->db->query("SELECT order_reference from orders where customer_unique_id = '$userid'  group by order_reference");
 		// print_r($query->result());
 		return $query->result();
 	}
